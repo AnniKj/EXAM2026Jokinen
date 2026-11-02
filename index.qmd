@@ -1,6 +1,6 @@
 ---
 title: "Species Diversity and Distributions"
-author: "Your name here"
+author: "Anni-Kaisa Jokinen"
 format:
   html:
     number-sections: true
@@ -27,9 +27,7 @@ execute:
 
 First choose your language and delete the section of the document in the other language.
 
-Answer the questions precisely but briefly: the questions are detailed to guide you so there are many of them.
-Don't waste your time repeating the course: you have all documents with you, copying their content is not valuable.
-To answer factual questions, you don't need to make sentences: e.g., just write "4." to answer the question "how much are 2 + 2?".
+Answer the questions precisely but briefly: the questions are detailed to guide you so there are many of them. Don't waste your time repeating the course: you have all documents with you, copying their content is not valuable. To answer factual questions, you don't need to make sentences: e.g., just write "4." to answer the question "how much are 2 + 2?".
 
 Before you begin:
 
@@ -40,28 +38,7 @@ Before you begin:
 
 During your work: render the document regularly (at the end of each question, for example) so that problems do not pile up.
 
-At the end of the exam: save the file, make a commit and push the project to GitHub.
-Do not modify the project after the exam has finished.
-
-## Français
-
-Commencez par choisir votre langue et supprimez la partie du document rédigée dans l'autre langue.
-
-Répondez aux questions de manière précise mais concise : les questions sont détaillées pour vous guider, c'est pourquoi elles sont nombreuses.
-Ne perdez pas votre temps à répéter le cours : vous disposez de tous les documents, il est inutile d'en recopier le contenu.
-Pour répondre aux questions factuelles, vous n'avez pas besoin de rédiger des phrases : par exemple, écrivez simplement "4." pour répondre à la question "Combien font 2 + 2 ?".
-
-Avant de commencer:
-
-1.  Tapez votre nom dans l'entête du document, dans le champ "author"
-2.  Exécutez dans le terminal:
-
-`quarto publish gh-pages index.qmd`
-
-Pendant votre travail: rendez le document régulièrement (à la fin de chaque question par exemple) pour ne pas laisser les problèmes s'accumuler.
-
-A la fin de l'examen: enregistrez le fichier, faites un commit et poussez le projet sur GitHub.
-Ne modifiez pas le projet après la fin de l'examen.
+At the end of the exam: save the file, make a commit and push the project to GitHub. Do not modify the project after the exam has finished.
 
 # English
 
@@ -80,6 +57,12 @@ Ne modifiez pas le projet après la fin de l'examen.
 - $S_{J3} = S_{>0} + 3 S_1 - 3 S_2 + S_3$
 
 > Quickly estimate the asymptotic richness of the forest using the jackknife estimators and the rules of @Brose2003.
+>
+> Asymptotic A = 120 using Jackknife 1 because coverage \>74%
+>
+> Asymptotic B = 120 using Jackknife 2 ; as coverage between 50% and 74% (72%)
+>
+> Asymptotic C = 340 using Jackknife 2 ; as coverage between 50% and 74% (57%)
 
 ## Phylogenetic diversity
 
@@ -96,17 +79,38 @@ tree_3sp <- function(h) {
 tree_3sp(0.5)
 ```
 
+> Just to clarify all these answers assume that h is the distance between the beginning of the tree (the most in the past) and the bifurcation into a and b.
+>
 > What is the order-0 phylogenetic diversity (Faith's PD) of a community containing the three species, whose phylogenetic tree is shown in the figure?
+>
+> 5
 
 > What is the possible range of values for `h`?
+>
+> between 1 and 0
 
 > What effect does `h` have on the value of PD?
+>
+> if h is closer to tree top \> closer to 0 \> then PD is higher
+>
+> if h is closer to tree bottom \> closer to 1 \> then PD is lower
+>
+> because PD is the addition of all branch lengths and the longer the branches after the branching of A and B the bigger PD is.
 
 > Express the value of PD in terms of `h`.
+>
+> PD = 1+ h + 2\*(1-h)
 
-> What is the richness (taxonomic, not phylogenetic) of the community?
-> Explain how $h$ allows us to take into account the closeness between species B and A.
+> What is the richness (taxonomic, not phylogenetic) of the community? Explain how $h$ allows us to take into account the closeness between species B and A.
+>
+> 3
+>
+> if h equals 0 then a and branched at the very beginning of the tree so they are as unrelated from each other as from C and in this case taxonomic richness equals phylogenetic richness
+>
+> if h equals 1 A and B are still the same species and thus as similar as can be, in this case taxonomic richness would become 2 because A and B are the same .
 
+> 
+>
 > If botanists disagree on whether species B and A are synonymous and a phylogeny shows that their distance $h$ is small, suggest a method to help them reach agreement.
 
 ## Lognormal distribution
@@ -150,17 +154,16 @@ autoplot(comm_lnorm)
 ```
 
 > What is the species richness of the observed communities?
+>
+> 100
 
 > What is the abundance of the rarest species (approximately, as read from the plot) compared to the total number of trees?
 
-> What do we observe for a sample of reasonable size, say 6.25 ha with 600 trees per hectare?
-> Draw the figure.
-> Be careful not to overwrite the `comm_lnorm` variable when reusing the code.
+> What do we observe for a sample of reasonable size, say 6.25 ha with 600 trees per hectare? Draw the figure. Be careful not to overwrite the `comm_lnorm` variable when reusing the code.
 
 > Plot the diversity profile of the two communities
 
-> Which community is the most diverse?
-> Explain this in relation to the value of $\sigma$.
+> Which community is the most diverse? Explain this in relation to the value of $\sigma$.
 
 ## Pielou (1972)
 
@@ -193,6 +196,10 @@ pielou_1972
 ```
 
 > How many species of aphids are there?
+>
+> ```{r}
+>
+> ```
 
 > How many different plants are there?
 
@@ -214,13 +221,9 @@ pielou_1972
 
 > Check whether the curves intersect for $q>2$.
 
-> Two profiles are flat.
-> Explain why.
+> Two profiles are flat. Explain why.
 
-> Partition the diversity.
-> Summarise this partitioning in one or a few sentences.
-> Caution: because of a bug in the published version of package divent, you can't use argument `estimator = "naive"` in the `div_part()` function.
-> Partition the asymptotic diversity with its default estimator.
+> Partition the diversity. Summarise this partitioning in one or a few sentences. Caution: because of a bug in the published version of package divent, you can't use argument `estimator = "naive"` in the `div_part()` function. Partition the asymptotic diversity with its default estimator.
 
 ### Niche width
 
@@ -263,8 +266,7 @@ pielou_niches
 
 *The number of habitats occupied by each aphid species can be counted using the usual diversity calculation functions, applied to this unusual dataset:*
 
-> Which aphid species is the most generalist?
-> What proportion of habitats does it occupy?
+> Which aphid species is the most generalist? What proportion of habitats does it occupy?
 
 > Which species is the most specialist?
 
@@ -272,16 +274,13 @@ pielou_niches
 
 > Plot the aphid diversity profiles and establish the link between the actual number of *Soledago* plants and niche width.
 
-> Pielou focuses solely on Shannon entropy in her article, using an archaic form known as the Brillouin formula, which makes the article very difficult to read.
-> @Levins1968 was the first to propose measuring niche width in this way, suggesting two metrics: $-\sum_i{p_i \log(p_i)}$ and $\sum_i{\frac{1}{p_i^2}}$, where $p_i$ is the probability that an aphid is found in habitat $i$.
-> Identify these two metrics.
+> Pielou focuses solely on Shannon entropy in her article, using an archaic form known as the Brillouin formula, which makes the article very difficult to read. @Levins1968 was the first to propose measuring niche width in this way, suggesting two metrics: $-\sum_i{p_i \log(p_i)}$ and $\sum_i{\frac{1}{p_i^2}}$, where $p_i$ is the probability that an aphid is found in habitat $i$. Identify these two metrics.
 
 ### Niche overlap
 
 *Pielou wants to assess niche overlap in addition to niche width. The reasoning is clearer using Hill's numbers. If the niches do not overlap at all, there is only one species per habitat, provided, of course, that there are fewer species than habitats. Conversely, if all species are completely generalist, the number of species per habitat equals the total number of species.*
 
-> What measure reflects niche overlap?
-> Give its value for $q = 1$.
+> What measure reflects niche overlap? Give its value for $q = 1$.
 
 # Français
 
@@ -324,8 +323,7 @@ tree_3sp(0.5)
 
 > Ecrivez la valeur de PD en fonction de \`h\`.
 
-> Quel est la richesse (taxonomique, pas phylogénétique) de la communauté ?
-> Expliquez comment $h$ permet de prendre en compte la proximité entre les espèces B et A.
+> Quel est la richesse (taxonomique, pas phylogénétique) de la communauté ? Expliquez comment $h$ permet de prendre en compte la proximité entre les espèces B et A.
 
 > Si les botanistes sont en désaccord sur la synonymie ou non des espèces B et A et qu'une phylogénie montre que leur distance $h$ est faible, proposez une méthode pour les mettre d'accord.
 
@@ -370,17 +368,13 @@ rcommunity(
 autoplot(comm_lnorm)
 ```
 
-> Quelle est la richesse des communautés observées ?
-> Quel est l'abondance de l'espèce la plus rare (approximativement, lue sur le graphique) comparativement au nombre d'arbres total ?
+> Quelle est la richesse des communautés observées ? Quel est l'abondance de l'espèce la plus rare (approximativement, lue sur le graphique) comparativement au nombre d'arbres total ?
 
-> Qu'observe-t-on pour un échantillon de taille raisonnable, disons 6,25ha avec 600 arbres / ha ?
-> Faites la figure.
-> Attention à ne pas détruire la variable `comm_lnorm` en réutilisant le code.
+> Qu'observe-t-on pour un échantillon de taille raisonnable, disons 6,25ha avec 600 arbres / ha ? Faites la figure. Attention à ne pas détruire la variable `comm_lnorm` en réutilisant le code.
 
 > Tracez le profil de diversité des deux communautés
 
-> Quelle est la communauté la plus diverse ?
-> Faites le lien avec la valeur de $\sigma$.
+> Quelle est la communauté la plus diverse ? Faites le lien avec la valeur de $\sigma$.
 
 ## Pielou (1972)
 
@@ -434,13 +428,9 @@ pielou_1972
 
 > Vérifiez si les courbes se croisent pour $q>2$.
 
-> Deux profils sont plats.
-> Expliquez pourquoi.
+> Deux profils sont plats. Expliquez pourquoi.
 
-> Décomposez la diversité.
-> Résumez cette décomposition en une ou quelques phrases.
-> Attention : en raison d'un bug dans la version publiée du package divent, vous ne pouvez pas utiliser l'argument `estimator = "naive"` dans la fonction `div_part()`.
-> Faites la décomposition de la diversité asymptotique avec l'estimateur par défaut.
+> Décomposez la diversité. Résumez cette décomposition en une ou quelques phrases. Attention : en raison d'un bug dans la version publiée du package divent, vous ne pouvez pas utiliser l'argument `estimator = "naive"` dans la fonction `div_part()`. Faites la décomposition de la diversité asymptotique avec l'estimateur par défaut.
 
 ### Largeur de niches
 
@@ -483,20 +473,16 @@ pielou_niches
 
 *Le nombre d'habitats occupés par chaque espèce de puceron peut être compté avec les fonctions de calcul de la diversité habituelles, appliquées à ce jeu de données inhabituel :*
 
-> Quelle est l'espèce de pucerons la plus généraliste ?
-> Quelle proportion des habitats occupe-t-elle ?
+> Quelle est l'espèce de pucerons la plus généraliste ? Quelle proportion des habitats occupe-t-elle ?
 
 > Quelle est l'espèce la plus spécialiste ?
 
 > Tracez les profils de diversité des pucerons et faites le lien entre le nombre effectif de *Soledago* et la largeur de niche.
 
-> Pielou s'intéresse seulement à l'entropie de Shannon dans son article, sous une forme archaïque appelée formule de Brillouin, ce qui rend l'article très difficile à lire.
-> @Levins1968 avait le premier proposé de mesurer la largeur de niche de cette façon, en proposant deux métriques : $-\sum_i{p_i \log(p_i)}$ et $\sum_i{\frac{1}{p_i^2}}$ où $p_i$ est la probabilité qu'un puceron se trouve dans l'habitat $i$.
-> Identifiez ces deux métriques.
+> Pielou s'intéresse seulement à l'entropie de Shannon dans son article, sous une forme archaïque appelée formule de Brillouin, ce qui rend l'article très difficile à lire. @Levins1968 avait le premier proposé de mesurer la largeur de niche de cette façon, en proposant deux métriques : $-\sum_i{p_i \log(p_i)}$ et $\sum_i{\frac{1}{p_i^2}}$ où $p_i$ est la probabilité qu'un puceron se trouve dans l'habitat $i$. Identifiez ces deux métriques.
 
 ### Chevauchement des niches
 
 *Pielou veut évaluer le chevauchement des niches en plus de leur largeur. Le raisonnement est plus clair avec les nombres de Hill. Si les niches ne se chevauchent pas du tout, on trouve une seule espèce par habitat à condition bien sûr qu'il y ait moins d'espèces que d'habitats. A l'inverse, si toutes les espèces sont totalement généralistes, le nombre d'espèces par habitat est celui des espèces.*
 
-> Quelle est la mesure qui rend compte du chevauchement des niches ?
-> Donnez sa valeur pour q = 1.
+> Quelle est la mesure qui rend compte du chevauchement des niches ? Donnez sa valeur pour q = 1.
